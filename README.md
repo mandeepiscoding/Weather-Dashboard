@@ -1,2 +1,22 @@
-# Weather-Dashboard
-This is an application for travelers to plan their trip better.
+# Weather Dashboard
+
+## Features
+
+- Search for weather in different cities.
+- View current weather and 5-day forecast.
+- Click on popular cities for quick access.
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+- OpenWeatherMap API
+
+## Credits
+
+Created by Mandeep Singh.
+
+![Weather Dashboard](assets/ss.png)
+&copy; 2024 Your Name. All rights reserved.
+

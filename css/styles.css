@@ -3,68 +3,68 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
-  }
+}
   
-  .container {
+.container {
     display: flex;
-  }
+}
   
-  .sidebar {
+.sidebar {
     width: 25%;
     background-color: #4CAF50;
     color: white;
-  }
+}
   
-  .main-content {
+.main-content {
     flex-grow: 1;
     padding: 20px;
-  }
+}
   
-  header {
+header {
     padding: 20px;
     text-align: center;
-  }
+}
   
-  form {
+form {
     margin-bottom: 20px;
-  }
+}
   
-  input[type="text"] {
+input[type="text"] {
     padding: 8px;
     border: 1px solid #ccc;
-  }
+}
   
-  button {
+button {
     padding: 8px 16px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
     margin-left: 5px;
-  }
+}
   
-  .popular-cities {
+.popular-cities {
     padding: 20px;
-  }
+}
   
-  .popular-cities h2 {
+.popular-cities h2 {
     margin-top: 0;
-  }
+}
   
-  .popular-cities ul {
+.popular-cities ul {
     list-style-type: none;
     padding: 0;
-  }
+}
   
-  .popular-cities li {
+.popular-cities li {
     margin-bottom: 10px;
-  }
+}
   
-  .popular-city {
+.popular-city {
     color: white;
     text-decoration: none;
-  }
+}
   
-  .popular-city:hover {
+.popular-city:hover {
     text-decoration: underline;
-  }
+}

@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather Dashboard</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-  <div class="container">
+  
+    <div class="container">
     <div class="sidebar">
+
       <header>
         <h1>Weather Dashboard</h1>
         <form id="search-form">
           <input type="text" id="city-input" placeholder="Enter city name">
           <button type="submit">Search</button>
         </form>
+
       </header>
       <div class="popular-cities">
+        
         <h2>Popular Cities</h2>
         <ul id="popular-cities-list">
-          <li><a href="#" class="popular-city">Los Angeles</a></li>
+          
+            <li><a href="#" class="popular-city">Los Angeles</a></li>
           <li><a href="#" class="popular-city">Vancouver</a></li>
           <li><a href="#" class="popular-city">Surrey</a></li>
           <li><a href="#" class="popular-city">New York</a></li>
@@ -28,9 +35,11 @@
           <li><a href="#" class="popular-city">Toronto</a></li>
           <li><a href="#" class="popular-city">Calgary</a></li>
           <li><a href="#" class="popular-city">Seattle</a></li>
+
         </ul>
       </div>
     </div>
+    
     <div class="main-content">
       <div id="current-weather" class="weather-container"></div>
       <div id="forecast" class="weather-container"></div>
@@ -38,5 +47,9 @@
   </div>
 
   <script src="js/script.js" defer></script>
+
+  <footer>
+    <p>&copy; 2024 Mandeep Singh. All rights reserved.</p>
+  </footer>
 </body>
 </html>
