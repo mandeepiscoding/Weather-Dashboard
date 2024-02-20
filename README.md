@@ -17,6 +17,7 @@
 
 Created by Mandeep Singh.
 
+https://mandeepiscoding.github.io/Weather-Dashboard/
 ![Weather Dashboard](assets/ss.png)
 &copy; 2024 Your Name. All rights reserved.
 
