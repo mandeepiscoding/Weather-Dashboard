@@ -49,10 +49,14 @@ async function fetchWeather(city) {
 }
 
 function displayCurrentWeather(data) {
+  const iconCode = data.weather[0].icon;
+  const iconUrl = `http://openweathermap.org/img/w/${iconCode}.png`;
+
   currentWeatherContainer.innerHTML = `
     <div class="weather-card">
       <h2>${data.name}</h2>
       <p>Date: ${new Date().toLocaleDateString()}</p>
+      <img src="${iconUrl}" alt="Weather Icon">
       <p>Temperature: ${data.main.temp}°C</p>
       <p>Humidity: ${data.main.humidity}%</p>
       <p>Wind Speed: ${data.wind.speed} m/s</p>
