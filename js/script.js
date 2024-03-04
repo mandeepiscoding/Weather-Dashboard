@@ -6,6 +6,28 @@ const cityInput = document.getElementById('city-input');
 const currentWeatherContainer = document.getElementById('current-weather');
 const forecastContainer = document.getElementById('forecast');
 const popularCitiesList = document.getElementById('popular-cities-list');
+const searchHistoryContainer = document.getElementById('search-history');
+
+// Load search history from local storage
+let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+// Display search history
+function displaySearchHistory() {
+  searchHistoryContainer.innerHTML = '';
+  searchHistory.forEach(searchTerm => {
+    const searchItem = document.createElement('li');
+    searchItem.textContent = searchTerm;
+    searchItem.classList.add('search-history-item');
+    searchHistoryContainer.appendChild(searchItem);
+  });
+}
+
+// Update search history and display it
+function updateSearchHistory(city) {
+  searchHistory.unshift(city);
+  localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+  displaySearchHistory();
+}
 
 // Load weather data from local storage if available
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lastSearch) {
     fetchWeather(lastSearch);
   }
+  displaySearchHistory();
 });
 
 searchForm.addEventListener('submit', function(event) {
@@ -21,11 +44,21 @@ searchForm.addEventListener('submit', function(event) {
   if (city) {
     fetchWeather(city);
     cityInput.value = '';
+    updateSearchHistory(city);
   }
 });
 
 popularCitiesList.addEventListener('click', function(event) {
   if (event.target.classList.contains('popular-city')) {
+    const city = event.target.textContent;
+    fetchWeather(city);
+    updateSearchHistory(city);
+  }
+});
+
+// Handle clicking on search history items
+searchHistoryContainer.addEventListener('click', function(event) {
+  if (event.target.classList.contains('search-history-item')) {
     const city = event.target.textContent;
     fetchWeather(city);
   }
