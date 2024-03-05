@@ -1,6 +1,4 @@
-function setAutoComplete() {
-    $(function () {
-        var availableTags = [
+const cities = [
             "Aba",
             "Aberdeen",
             "Aberdeen",
@@ -3036,8 +3034,5 @@ function setAutoComplete() {
             "Zigong",
             "Zion"
         ];
-        $('#city-name').autocomplete({
-            source: availableTags
-        });
-    });
-}
+
+export default cities
