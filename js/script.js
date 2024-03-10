@@ -1,18 +1,21 @@
 const apiKey = '572282b7f91ae502ef8219c2fdccd87e';
 const apiUrl = 'https://api.openweathermap.org/data/2.5/';
 
-const searchForm = document.getElementById('search-form');
-const cityInput = document.getElementById('city-input');
-const currentWeatherContainer = document.getElementById('current-weather');
-const forecastContainer = document.getElementById('forecast');
-const popularCitiesList = document.getElementById('popular-cities-list');
-const searchHistoryContainer = document.getElementById('search-history');
-
-// Load search history from local storage
-let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+const searchForm = $('#search-form')[0]; // Convert to DOM element
+const cityInput = $('#city-input'); // Convert to jQuery object
+const currentWeatherContainer = $('#current-weather')[0]; // Convert to DOM element
+const forecastContainer = $('#forecast')[0]; // Convert to DOM element
+const searchHistoryContainer = $('#search-history')[0]; // Convert to DOM element
 
 // Display search history
 function displaySearchHistory() {
+  let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+
+  // Load search history from local storage
+  if (!searchHistory) {
+    localStorage.setItem("searchHistory", JSON.stringify([]));
+    return;
+  }
   searchHistoryContainer.innerHTML = '';
   searchHistory.forEach(searchTerm => {
     const searchItem = document.createElement('li');
@@ -24,40 +27,38 @@ function displaySearchHistory() {
 
 // Update search history and display it
 function updateSearchHistory(city) {
-  searchHistory.unshift(city);
+  let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+  searchHistory.push(city);
   localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
   displaySearchHistory();
 }
 
-// Load weather data from local storage if available
-document.addEventListener('DOMContentLoaded', () => {
+// Ensure the document is ready before executing JavaScript
+$(document).ready(function () {
   const lastSearch = localStorage.getItem('lastSearch');
   if (lastSearch) {
     fetchWeather(lastSearch);
   }
   displaySearchHistory();
+
+  // Initialize autocomplete on the city input field
+  cityInput.autocomplete({
+    source: cities // Use the array of cities defined above
+  });
 });
 
-searchForm.addEventListener('submit', function(event) {
+searchForm.addEventListener('submit', function (event) {
   event.preventDefault();
-  const city = cityInput.value.trim();
+  const city = cityInput.val().trim(); // Use jQuery's val() method to get input value
   if (city) {
     fetchWeather(city);
-    cityInput.value = '';
-    updateSearchHistory(city);
-  }
-});
-
-popularCitiesList.addEventListener('click', function(event) {
-  if (event.target.classList.contains('popular-city')) {
-    const city = event.target.textContent;
-    fetchWeather(city);
+    cityInput.val(''); // Use jQuery's val() method to set input value
     updateSearchHistory(city);
   }
 });
 
 // Handle clicking on search history items
-searchHistoryContainer.addEventListener('click', function(event) {
+searchHistoryContainer.addEventListener('click', function (event) {
   if (event.target.classList.contains('search-history-item')) {
     const city = event.target.textContent;
     fetchWeather(city);

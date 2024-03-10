@@ -1,69 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <!-- Meta tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="css/styles.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"
-    />
-  </head>
-
-  <body>
-    <div class="container">
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <header>
-          <!-- Sidebar header with the title -->
-          <h1>Weather Dashboard</h1>
-          <!-- Search form -->
-          <form id="search-form">
-            <input type="text" id="city-input" placeholder="Enter city name" />
-            <button type="submit">Search</button>
-          </form>
-        </header>
-        <!-- Popular cities section -->
-        <div class="popular-cities">
-          <h2>Popular Cities</h2>
-          <ul id="popular-cities-list">
-            <!-- List of popular cities -->
-            <li><a href="#" class="popular-city">Los Angeles</a></li>
-            <li><a href="#" class="popular-city">Vancouver</a></li>
-            <li><a href="#" class="popular-city">Surrey</a></li>
-            <li><a href="#" class="popular-city">New York</a></li>
-            <li><a href="#" class="popular-city">Atlanta</a></li>
-            <li><a href="#" class="popular-city">San Francisco</a></li>
-            <li><a href="#" class="popular-city">Toronto</a></li>
-            <li><a href="#" class="popular-city">Calgary</a></li>
-            <li><a href="#" class="popular-city">Seattle</a></li>
-          </ul>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Weather Dashboard</h1>
         </div>
-      </div>
+    </header>
 
-      <!-- Main content -->
-      <div class="main-content">
-        <!-- Current weather display -->
-        <div id="current-weather" class="weather-container"></div>
-        <!-- 5-day forecast display -->
-        <div id="forecast" class="weather-container"></div>
-      </div>
+    <div class="container">
+        <aside class="sidebar">
+            <div id="search-history" class="search-history">
+                <h2>Search History</h2>
+                <ul id="search-history-list">
+                    <!-- Search history list will be populated dynamically using JavaScript -->
+                </ul>
+            </div>
+            <form id="search-form" class="search-form">
+                <input type="text" id="city-input" class="city-input" placeholder="Enter city name" />
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </aside>
+
+        <main class="main-content">
+            <section id="current-weather" class="weather-section">
+                <!-- Current weather details will be displayed here -->
+            </section>
+            <section id="forecast" class="weather-section">
+                <!-- 5-day forecast details will be displayed here -->
+            </section>
+        </main>
     </div>
 
-    <!-- Custom JavaScript files -->
-    <script src="js/script.js" defer></script>
-    <script src="js/cities.js" defer></script>
-
-    <!-- Footer -->
-    <footer>
-      <!-- Copyright information -->
-      <p>&copy; 2024 Mandeep Singh. All rights reserved.</p>
+    <footer class="footer">
+        <p>&copy; 2024 Weather Dashboard. All rights reserved.</p>
     </footer>
-  </body>
+
+    <!-- Custom JavaScript files -->
+    <script src="js/cities.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script>
+        $(document).ready(function () {
+            // Import the cities array from cities.js
+            import('./js/cities.js')
+                .then(module => {
+                    const cities = module.default;
+                    // Initialize autocomplete on the city input field
+                    $('#city-input').autocomplete({
+                        source: cities // Use the array of cities from cities.js
+                    });
+                })
+                .catch(error => {
+                    console.error('Error importing cities:', error);
+                });
+        });
+    </script>
+</body>
 </html>
